@@ -8,7 +8,10 @@
         <!-- Place new controls here -->
         <Label x:Name="lblOne" Text="Pierwsza labelka" TextColor="Tomato" />
         <Label Text="Druga labelka" TextColor="{StaticResource PrimaryColor}" />
-        <Button Text="Test Me" Clicked="Button_Clicked" />
+        <Entry x:Name="entryLogin" Placeholder="Login" TextChanged="EntryLogin_TextChanged" />
+        <Entry x:Name="entryPassword" Placeholder="Password" TextChanged="EntryLogin_TextChanged" IsPassword="True" />
+        <Label x:Name="lblValidation" Text="Błedne dane" FontSize="Micro" TextColor="Red" IsVisible="False" />
+        <Button x:Name="btnLogin" Text="Zaloguj" Clicked="Button_Clicked" />
     </StackLayout>
 
 </ContentPage>

@@ -21,11 +21,64 @@ namespace App10
             });
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            var nazwa = sender as Button;
-            var nazwa2 = (Button)sender;
-            nazwa.IsVisible = false;
+            var login = entryLogin?.Text;
+            var pass = entryPassword?.Text;
+
+            if (login == "admin" && pass == "admin123")
+            {
+                var nazwa = sender as Button;
+                var nazwa2 = (Button)sender;
+                nazwa.IsVisible = false;
+
+                await Task.Delay(1000);
+
+                await Navigation.PushAsync(new SecondPage());
+            }
+            else
+            {
+                lblValidation.IsVisible = true;
+                entryLogin.BackgroundColor = Color.OrangeRed;
+                entryPassword.BackgroundColor = Color.OrangeRed;
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            btnLogin.IsVisible = true;
+            lblValidation.IsVisible = false;
+            entryLogin.BackgroundColor = Color.White;
+            entryPassword.BackgroundColor = Color.White;
+            entryLogin.Text = string.Empty;
+            entryPassword.Text = string.Empty;
+        }
+
+        private void EntryLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var entry = sender as Entry;
+
+            if (VerifyEntry(e.NewTextValue))
+            {
+                entry.BackgroundColor = Color.LightGreen;
+            }
+            else
+            {
+                entry.BackgroundColor = Color.LightGray;
+            }
+
+            btnLogin.IsEnabled = VerifyEntry(entryLogin.Text) && VerifyEntry(entryPassword.Text);           
+        }
+
+        private bool VerifyEntry(string text)
+        {
+            return text != null && text.Length > 4;
         }
     }
 }
