@@ -5,9 +5,9 @@
              Title="Druga strona">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Witaj na stronie drugiej"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <WebView x:Name="wvWeb" HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="FillAndExpand"
+                     Source="https://google.pl" />
             <Button Text="Powrót" Clicked="Button_Clicked" />
         </StackLayout>
     </ContentPage.Content>

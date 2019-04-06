@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace App10
 
                 await Task.Delay(1000);
 
-                await Navigation.PushAsync(new SecondPage());
+                await Navigation.PushAsync(new SecondPage("https://google.pl"));
             }
             else
             {
@@ -73,12 +74,44 @@ namespace App10
                 entry.BackgroundColor = Color.LightGray;
             }
 
-            btnLogin.IsEnabled = VerifyEntry(entryLogin.Text) && VerifyEntry(entryPassword.Text);           
+            btnLogin.IsEnabled = VerifyEntry(entryLogin.Text) && VerifyEntry(entryPassword.Text);
         }
 
         private bool VerifyEntry(string text)
         {
             return text != null && text.Length > 4;
+        }
+
+        private async void EntryUrl_Completed(object sender, EventArgs e)
+        {
+            if (IsUrlValid(entryUrl.Text))
+            {
+                if (await DisplayAlert("Czy na pewno?", $"Czy na pewno przejść na stronę {entryUrl.Text}?", "TAK", "NIE"))
+                {
+                    await Navigation.PushAsync(new HttpPage(entryUrl.Text));
+                }
+            }
+            else
+            {
+                await DisplayAlert("Błąd!", "Podano błędny adres www", "OK");
+            }
+        }
+
+        private void EntryUrl_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (IsUrlValid(e.NewTextValue))
+            {
+                entryUrl.BackgroundColor = Color.LightGreen;
+            }
+            else
+            {
+                entryUrl.BackgroundColor = Color.LightGray;
+            }
+        }
+
+        private bool IsUrlValid(string url)
+        {
+            return url.ToLower().StartsWith("https://");
         }
     }
 }

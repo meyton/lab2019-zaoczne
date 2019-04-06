@@ -12,6 +12,7 @@
         <Entry x:Name="entryPassword" Placeholder="Password" TextChanged="EntryLogin_TextChanged" IsPassword="True" />
         <Label x:Name="lblValidation" Text="Błedne dane" FontSize="Micro" TextColor="Red" IsVisible="False" />
         <Button x:Name="btnLogin" Text="Zaloguj" Clicked="Button_Clicked" />
+        <Entry x:Name="entryUrl" Placeholder="Wpisz adres www" Completed="EntryUrl_Completed" TextChanged="EntryUrl_TextChanged" />
     </StackLayout>
 
 </ContentPage>
