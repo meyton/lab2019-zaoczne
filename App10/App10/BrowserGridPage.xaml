@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App10.BrowserGridPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Entry Grid.Row="0" Grid.Column="0" x:Name="entryUrl" Placeholder="https://..." />
+            <Button Grid.Row="0" Grid.Column="1" Text="GO" Clicked="Button_Clicked" />
+            <WebView Grid.Row="1" Grid.ColumnSpan="2" x:Name="wvWeb" Source="https://google.pl" />
+            <Button Text="Reset" Grid.Row="2" Grid.ColumnSpan="2" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

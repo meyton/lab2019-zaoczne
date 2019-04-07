@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App10.TicTacToePage"
+             Title="Kółko i krzyżyk">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <StackLayout Spacing="30" Grid.ColumnSpan="3" Orientation="Horizontal" >
+                <Label Text="Kółko: 0" />
+                <Label Text="Remis: 0" />
+                <Label Text="Krzyżyk: 0" />
+            </StackLayout>
+            <Label HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="Ruch: O/X" />
+            <Button Grid.Row="2" Grid.Column="0" />
+            <Button Grid.Row="2" Grid.Column="1" />
+            <Button Grid.Row="2" Grid.Column="2" />
+            <Button Grid.Row="3" Grid.Column="0" />
+            <Button Grid.Row="3" Grid.Column="1" />
+            <Button Grid.Row="3" Grid.Column="2" />
+            <Button Grid.Row="4" Grid.Column="0" />
+            <Button Grid.Row="4" Grid.Column="1" />
+            <Button Grid.Row="4" Grid.Column="2" />
+            <Button Text="Reset" Grid.Row="5" Grid.ColumnSpan="3" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
