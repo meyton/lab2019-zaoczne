@@ -23,16 +23,16 @@
                 <Label Text="Remis: 0" />
                 <Label Text="Krzyżyk: 0" />
             </StackLayout>
-            <Label HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="Ruch: O/X" />
-            <Button Grid.Row="2" Grid.Column="0" />
-            <Button Grid.Row="2" Grid.Column="1" />
-            <Button Grid.Row="2" Grid.Column="2" />
-            <Button Grid.Row="3" Grid.Column="0" />
-            <Button Grid.Row="3" Grid.Column="1" />
-            <Button Grid.Row="3" Grid.Column="2" />
-            <Button Grid.Row="4" Grid.Column="0" />
-            <Button Grid.Row="4" Grid.Column="1" />
-            <Button Grid.Row="4" Grid.Column="2" />
+            <Label x:Name="lblMove" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="Ruch: O/X" />
+            <Button Grid.Row="2" Grid.Column="0" Clicked="Button_Clicked" />
+            <Button Grid.Row="2" Grid.Column="1" Clicked="Button_Clicked" />
+            <Button Grid.Row="2" Grid.Column="2" Clicked="Button_Clicked" />
+            <Button Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked" />
+            <Button Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked" />
+            <Button Grid.Row="3" Grid.Column="2" Clicked="Button_Clicked" />
+            <Button Grid.Row="4" Grid.Column="0" Clicked="Button_Clicked" />
+            <Button Grid.Row="4" Grid.Column="1" Clicked="Button_Clicked" />
+            <Button Grid.Row="4" Grid.Column="2" Clicked="Button_Clicked" />
             <Button Text="Reset" Grid.Row="5" Grid.ColumnSpan="3" />
         </Grid>
     </ContentPage.Content>
