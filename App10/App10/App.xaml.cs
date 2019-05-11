@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App10.Data;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,11 +12,13 @@ namespace App10
         {
             InitializeComponent();
             MainPage = new NavigationPage(new TicTacToePage());
+            //var fileHelper = DependencyService.Get<IFileHelper>();
+            //var path = fileHelper.GetLocalFilepath("app.database");
+            //var db = new Data.LocalDatabase(path);
         }
         
         protected override void OnStart()
         {
-            // Handle when your app starts
         }
 
         protected override void OnSleep()

@@ -15,6 +15,7 @@ namespace App10
         private string _currentSymbol;
         private const string Circle = "O";
         private const string Cross = "X";
+        private const string Draw = "draw";
         private const int GameDimension = 3;
 
         List<List<string>> Buttons { get; set; }
@@ -32,7 +33,17 @@ namespace App10
 
             if (DoWeHaveAWinner())
             {
+                await SaveWin(_currentSymbol);
                 await DisplayAlert("Gratulacje", $"Wygrywa {_currentSymbol}", "OK");
+                Application.Current.MainPage = new NavigationPage(new TicTacToePage());
+                return;
+            }
+
+            if (IsItDraw())
+            {
+                await SaveWin(Draw);
+                await DisplayAlert("Remis", "Gra zakończona remisem", "OK");
+                Application.Current.MainPage = new NavigationPage(new TicTacToePage());
             }
 
             //_currentSymbol = _currentSymbol == Circle ? Cross : Circle;
@@ -48,6 +59,29 @@ namespace App10
 
             btn.IsEnabled = false;
             lblMove.Text = $"Ruch: {_currentSymbol}";
+        }
+
+        private bool IsItDraw()
+        {
+            var btns = GetButtons();
+            if (btns.Any(b => string.IsNullOrEmpty(((Button)b).Text)))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private async Task SaveWin(string currentSymbol)
+        {
+            int score = 1;
+            if (Data.Properties.AppProperties.ContainsKey(currentSymbol))
+            {
+                score += (int)Data.Properties.AppProperties[currentSymbol];
+            }
+
+            Data.Properties.AppProperties[currentSymbol] = score;
+            await Application.Current.SavePropertiesAsync();
         }
 
         private bool DoWeHaveAWinnerAlt()
@@ -94,9 +128,7 @@ namespace App10
         }
         private bool DoWeHaveAWinner()
         {
-            var grid = Content as Grid;
-            var btns = grid.Children.Where(c => c.GetType() == typeof(Button)).Take(9).ToList();
-
+            var btns = GetButtons();
             bool isRowChecked = CheckOne(btns, 0, 1, 2) || CheckOne(btns, 3, 4, 5) || CheckOne(btns, 6, 7, 8);
             bool isColumnChecked = CheckOne(btns, 0, 3, 6) || CheckOne(btns, 1, 4, 7) || CheckOne(btns, 2, 5, 8);
             bool isDiagonalChecked = CheckOne(btns, 0, 4, 8) || CheckOne(btns, 2, 4, 6);
@@ -109,6 +141,37 @@ namespace App10
             return !string.IsNullOrWhiteSpace(((Button)btns[b1]).Text)
                 && ((Button)btns[b1]).Text == ((Button)btns[b2]).Text
                 && ((Button)btns[b2]).Text == ((Button)btns[b3]).Text;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (Data.Properties.AppProperties.ContainsKey(Cross))
+            {
+                lblCross.Text = $"Krzyżyk: {Data.Properties.AppProperties[Cross]}";
+            }
+
+            if (Data.Properties.AppProperties.ContainsKey(Circle))
+            {
+                lblCircle.Text = $"Kółko: {Data.Properties.AppProperties[Circle]}";
+            }
+
+            if (Data.Properties.AppProperties.ContainsKey(Draw))
+            {
+                lblDraw.Text = $"Remis: {Data.Properties.AppProperties[Draw]}";
+            }
+        }
+
+        private List<View> GetButtons()
+        {
+            var grid = Content as Grid;
+            return grid.Children.Where(c => c.GetType() == typeof(Button)).Take(9).ToList();
+        }
+
+        private void ButtonReset_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new NavigationPage(new TicTacToePage());
         }
     }
 }

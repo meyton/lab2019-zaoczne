@@ -19,9 +19,9 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <StackLayout Spacing="30" Grid.ColumnSpan="3" Orientation="Horizontal" >
-                <Label Text="Kółko: 0" />
-                <Label Text="Remis: 0" />
-                <Label Text="Krzyżyk: 0" />
+                <Label x:Name="lblCircle" Text="Kółko: 0" />
+                <Label x:Name="lblDraw" Text="Remis: 0" />
+                <Label x:Name="lblCross" Text="Krzyżyk: 0" />
             </StackLayout>
             <Label x:Name="lblMove" HorizontalTextAlignment="Center" Grid.Row="1" Grid.Column="1" Text="Ruch: O/X" />
             <Button Grid.Row="2" Grid.Column="0" Clicked="Button_Clicked" />
@@ -33,7 +33,7 @@
             <Button Grid.Row="4" Grid.Column="0" Clicked="Button_Clicked" />
             <Button Grid.Row="4" Grid.Column="1" Clicked="Button_Clicked" />
             <Button Grid.Row="4" Grid.Column="2" Clicked="Button_Clicked" />
-            <Button Text="Reset" Grid.Row="5" Grid.ColumnSpan="3" />
+            <Button Text="Reset" Clicked="ButtonReset_Clicked"  Grid.Row="5" Grid.ColumnSpan="3" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
