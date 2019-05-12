@@ -17,6 +17,7 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="50" />
+                <RowDefinition Height="20" />
             </Grid.RowDefinitions>
             <StackLayout Spacing="30" Grid.ColumnSpan="3" Orientation="Horizontal" >
                 <Label x:Name="lblCircle" Text="Kółko: 0" />
@@ -34,6 +35,7 @@
             <Button Grid.Row="4" Grid.Column="1" Clicked="Button_Clicked" />
             <Button Grid.Row="4" Grid.Column="2" Clicked="Button_Clicked" />
             <Button Text="Reset" Clicked="ButtonReset_Clicked"  Grid.Row="5" Grid.ColumnSpan="3" />
+            <Label x:Name="lblRun" Text="Pierwsze uruchomienie" HorizontalTextAlignment="Center" Grid.Row="6" Grid.ColumnSpan="3" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

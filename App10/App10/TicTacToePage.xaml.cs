@@ -161,6 +161,12 @@ namespace App10
             {
                 lblDraw.Text = $"Remis: {Data.Properties.AppProperties[Draw]}";
             }
+
+            if (App.LastRunDate != null)
+            {
+                lblRun.Text = $"Ostatnie uruchomienie: {App.LastRunDate}";
+            }
+
         }
 
         private List<View> GetButtons()
