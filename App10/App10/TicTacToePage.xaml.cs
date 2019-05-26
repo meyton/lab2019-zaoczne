@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App10.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -143,7 +144,7 @@ namespace App10
                 && ((Button)btns[b2]).Text == ((Button)btns[b3]).Text;
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -167,6 +168,8 @@ namespace App10
                 lblRun.Text = $"Ostatnie uruchomienie: {App.LastRunDate}";
             }
 
+            var students = await App.LocalDB.GetItemsAsync<Student>();
+            await DisplayAlert("Studenci", $"Liczba studentów w bazie: {students.Count}", "OK");
         }
 
         private List<View> GetButtons()
@@ -175,8 +178,15 @@ namespace App10
             return grid.Children.Where(c => c.GetType() == typeof(Button)).Take(9).ToList();
         }
 
-        private void ButtonReset_Clicked(object sender, EventArgs e)
+        private async void ButtonReset_Clicked(object sender, EventArgs e)
         {
+            await App.LocalDB.SaveItemAsync(new Student()
+            {
+                FirstName = "Marcin",
+                LastName = "Wesel",
+                Birthday = new DateTime(1989, 5, 19),
+                Grade = 3
+            });
             Application.Current.MainPage = new NavigationPage(new TicTacToePage());
         }
     }

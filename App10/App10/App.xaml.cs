@@ -11,16 +11,26 @@ namespace App10
         private const string LastRunKey = "lastRun";
         public static DateTime? LastRunDate { get; set; } = null;
 
+        private static LocalDatabase localDB;
+        public static LocalDatabase LocalDB
+        {
+            get
+            {
+                if (localDB == null)
+                {
+                    var fileHelper = DependencyService.Get<IFileHelper>();
+                    var path = fileHelper.GetLocalFilepath("app.database");
+                    localDB = new Data.LocalDatabase(path);
+                }
+
+                return localDB;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new TicTacToePage());
-
-            var fileHelper = DependencyService.Get<IFileHelper>();
-
-            var path = fileHelper.GetLocalFilepath("app.database");
-            var db = new Data.LocalDatabase(path);
         }
 
         protected override async void OnStart()
