@@ -30,7 +30,7 @@ namespace App10
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new TeachersPage());
+            MainPage = new NavigationPage(new Views.TestPage());
         }
 
         protected override async void OnStart()
