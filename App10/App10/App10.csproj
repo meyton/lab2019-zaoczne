@@ -18,6 +18,9 @@
     <Compile Update="BrowserGridPage.xaml.cs">
       <DependentUpon>BrowserGridPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="StudentsPage.xaml.cs">
+      <DependentUpon>StudentsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +31,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="SecondPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="StudentDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TeachersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="TicTacToePage.xaml">

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App10.StudentDetailsPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20">
+            <Label Text="ID Studenta:" />
+            <Label x:Name="lblId" />
+            <Label x:Name="lblTeacher" />
+            <Entry x:Name="entryFirstName" />
+            <Entry x:Name="entryLastName" />
+            <Entry x:Name="entryGrade" />
+            <DatePicker x:Name="dpBirthday" />
+            <Button Margin="30" Text="Update" Clicked="Update_Clicked" />
+            <Button Margin="30" Text="Delete" Clicked="Delete_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

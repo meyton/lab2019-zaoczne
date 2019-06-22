@@ -30,7 +30,7 @@ namespace App10
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new TicTacToePage());
+            MainPage = new NavigationPage(new TeachersPage());
         }
 
         protected override async void OnStart()

@@ -15,6 +15,7 @@ namespace App10.Data
         {
             database = new SQLiteAsyncConnection(filepath);
             database.CreateTableAsync<Student>().Wait();
+            database.CreateTableAsync<Teacher>().Wait();
         }
 
         public async Task<List<Student>> GetStudents()
@@ -27,9 +28,9 @@ namespace App10.Data
             return await database.Table<T>().ToListAsync();
         }
 
-        public async Task<Student> GetStudentById(int id)
+        public async Task<List<Student>> GetStudentsByTeacherId(int teacherId)
         {
-            return await database.Table<Student>().Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await database.Table<Student>().Where(x => x.TeacherId == teacherId).ToListAsync();
         }
 
         public async Task<T> GetItemByIdAsync<T>(int id) where T : class, ISqliteModel, new()

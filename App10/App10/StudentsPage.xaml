@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App10.StudentsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ListView Grid.ColumnSpan="2" x:Name="lvStudents"
+            ItemTapped="Handle_ItemTapped">
+
+            <!--Built in Cells-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding FirstName}" Detail="{Binding LastName}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Entry x:Name="entryFirstName" Grid.Row="1" Placeholder="First Name" />
+        <Entry x:Name="entryLastName" Grid.Row="1" Grid.Column="1" Placeholder="Last Name" />
+        <Entry x:Name="entryGrade" Grid.Row="2" Placeholder="Grade" />
+        <DatePicker x:Name="dpBirthday" Grid.Row="2" Grid.Column="1" />
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Text="Save student" Clicked="Button_Clicked" />
+    </Grid>
+</ContentPage>
