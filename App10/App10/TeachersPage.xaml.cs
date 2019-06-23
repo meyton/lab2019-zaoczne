@@ -22,11 +22,21 @@ namespace App10
         {
             if (e.Item == null)
                 return;
-
+            
             var teacher = (Teacher)e.Item;
-            await DisplayAlert("Item Tapped", $"Teacher: {teacher.Id}, {teacher.FirstName} {teacher.LastName}", "OK");
 
-            await Navigation.PushAsync(new StudentsPage(teacher));
+            await Xamarin.Essentials.TextToSpeech.SpeakAsync($"Teacher: {teacher.Id}, {teacher.FirstName} {teacher.LastName}");
+
+            await Xamarin.Essentials.Share.RequestAsync($"Teacher: {teacher.Id}, {teacher.FirstName} {teacher.LastName}");
+
+            if (await DisplayAlert("Czy chcesz edytować nauczyciela?", $"Teacher: {teacher.Id}, {teacher.FirstName} {teacher.LastName}", "TAK", "NIE"))
+            {
+                await Navigation.PushAsync(new Views.TeacherDetailsPage(teacher));
+            }
+            else
+            {
+                await Navigation.PushAsync(new StudentsPage(teacher));
+            }
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
